@@ -149,6 +149,8 @@ spec:
     port: 80 #service-port
     targetPort: 8080 #target-port
 ---
+
+
 apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
 metadata:
