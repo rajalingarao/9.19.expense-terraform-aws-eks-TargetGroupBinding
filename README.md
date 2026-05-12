@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS transactions (
 );
 ```
 ```
-CREATE USER IF NOT EXISTS 'expense'@'%' IDENTIFIED BY 'ExpenseApp1';
+CREATE USER IF NOT EXISTS 'expense'@'%' IDENTIFIED BY 'ExpenseApp@1';
 ```
 ```
 GRANT ALL ON transactions.* TO 'expense'@'%';
@@ -147,6 +147,18 @@ helm repo add eks https://aws.github.io/eks-charts
 ```
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=expense-dev
 ```
+
+* Option 1 (Recommended): Reuse Existing ServiceAccount
+
+* Since eksctl already created the IAM service account, tell Helm not to create it again.
+```
+helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  -n kube-system \
+  --set clusterName=expense-dev \
+  --set serviceAccount.create=false \
+  --set serviceAccount.name=aws-load-balancer-controller
+```
+
 
 # Validate:
 * check aws-load-balancer-controller is running in kube-system namespace.

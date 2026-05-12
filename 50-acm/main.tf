@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "expense" {
-    domain_name = "*.lingaiah.online"
+    domain_name = "*.lithesh.shop"
     validation_method = "DNS"
     tags = merge(
         var.common_tags,
