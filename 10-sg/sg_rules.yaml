@@ -1,0 +1,66 @@
+- name: SG Rules
+  
+# These all Security group rules
+# "bastion_public"  22
+# "cluster_bastion"  443
+# "cluster_node"   0 to 65535
+# "node_cluster"   0 to 65535
+# "node_vpc"       0 to 65535
+# "db_bastion"   3306
+# "db_node"      3306
+# "ingress_public_https" 443
+# "ingress_public_http"  80# 
+# "node_ingress"   30000 -32768
+
+  sg:
+  - expense-dev-db
+  - expense-dev-bastion
+  - expense-dev-cluster
+  - expense-dev-node
+  - expense-dev-ingress
+
+  bastion:
+  - name: bastion_public
+    desc: bastion accepting connections from public
+    source: public #ideally your home IP address/32
+    port: 22
+  db:
+  - name: db_bastion
+    desc: db accepting connections from bastion
+    source: bastion
+    port: 3306
+  - name: db_node
+    desc: db accepting connections from node
+    source: node
+    port: 3306
+  cluster:
+  - name: cluster_bastion
+    desc: cluster accepting connections from bastiion
+    source: bastion
+    port: 443
+  - name: cluster_node
+    desc: cluster accepting connections from node
+    source: node
+    port: 0 -65535
+  node:
+  - name: node_cluster
+    desc: node accepting connections from cluster
+    source: cluster
+    port: 0 -65535
+  - name: node_vpc
+    desc: node accepting connections from vpc
+    source: vpc # expense-vpc ["10.0.0.0/16"]
+    port: 0 -65535
+  - name: node_ingress
+    desc: node accepting connections from ingress
+    source: ingress
+    port: 30000 -32768
+  Ingress:
+  - name: ingress_http
+    desc: ingress accepting connections from http
+    source: http
+    port: 80
+  - name: ingress_https
+    desc: ingress accepting connections from https
+    source: https
+    port: 443

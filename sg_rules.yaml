@@ -1,0 +1,67 @@
+- name: SG Rules
+  sg:
+  - expense-dev-db
+  - expense-dev-bastion
+  - expense-dev-ingress
+  - expense-dev-cluster
+  - expense-dev-node
+
+  bastion:
+  - name: bastion_public
+    desc: bastion accepting connections from public
+    source: public #idealy your home IP address/32
+    port: 22
+
+  - name: cluster_backend
+    desc: cluster accepting connections from bastion
+    source: bastion
+    port: 443
+
+  - name: cluster_node
+    desc: cluster accepting connections from node
+    source: node
+    port: 0 - 65535
+
+  - name: node_cluster
+    desc: node accepting connections from cluster
+    source: cluster
+    port: 0 - 65535
+
+  - name: node_default-vpc
+    desc: node accepting connections from default vpc
+    source: default vpc ["10.0.0.0/16"]
+    port: 0 - 65535
+    destination: node
+
+  - name: db_bastion
+    desc: db accepting connections from bastion
+    source: bastion
+    port: 3306
+
+  - name: db_node
+    desc: db accepting connections from node
+    source: node
+    port: 3306
+
+  - name: ingress_public_https
+    desc: ingress accepting connections from public_https
+    source: secure public ["0.0.0.0/0"]
+    port: 443
+    destination: ingress
+
+  - name: ingress_public_http
+    desc: ingress accepting connections from public_http
+    source: unsecure public ["0.0.0.0/0"]
+    port: 80
+    destination: ingress
+
+  - name: node_ingress
+    desc: node accepting connections from ingress
+    source: ingress
+    port:  30000 - 32768
+
+  - name: cluster_jenkins-agent
+    desc: Cluster accepting connections from jenkins agent
+    source: default vpc ["172.31.0.0/16"]
+    port: 0 - 65535
+    destination: cluster
