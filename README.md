@@ -201,7 +201,7 @@ http://expense-dev.lithesh.shop:80
 # Trouble shoot using debug manifest:
 
 ```
-mysql -h expense-dev.cm9mcies2otg.us-east-1.rds.amazonaws.com -u root -pExpenseApp1
+mysql -h expense-dev.c0d4soae2u8h.us-east-1.rds.amazonaws.com -u root -pExpenseApp1
 ```
 or
 
