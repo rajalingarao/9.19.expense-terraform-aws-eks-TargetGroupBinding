@@ -9,7 +9,8 @@ terraform {
     bucket = "roboshop13-remote-state"
     key    = "tf-aws-eks-tb-ingress-alb"
     region = "us-east-1"
-    dynamodb_table = "roboshop13-locking"
+    #dynamodb_table = "roboshop13-locking"
+    use_lockfile = true
   }
 }
 provider "aws" {

@@ -14,6 +14,7 @@ module "db" {
   manage_master_user_password = false
   password_wo = "ExpenseApp1"
   password_wo_version = 1
+  skip_final_snapshot = true
 
   vpc_security_group_ids = [data.aws_ssm_parameter.db_sg_id.value]
 
@@ -41,22 +42,22 @@ module "db" {
     }
   ]
 
-  options = [
-    {
-      option_name = "MARIADB_AUDIT_PLUGIN"
+  # options = [
+  #   {
+  #     option_name = "MARIADB_AUDIT_PLUGIN"
 
-      option_settings = [
-        {
-          name  = "SERVER_AUDIT_EVENTS"
-          value = "CONNECT"
-        },
-        {
-          name  = "SERVER_AUDIT_FILE_ROTATIONS"
-          value = "37"
-        },
-      ]
-    },
-  ]
+  #     option_settings = [
+  #       {
+  #         name  = "SERVER_AUDIT_EVENTS"
+  #         value = "CONNECT"
+  #       },
+  #       {
+  #         name  = "SERVER_AUDIT_FILE_ROTATIONS"
+  #         value = "37"
+  #       },
+  #     ]
+  #   },
+  # ]
 
   tags = merge(
      var.common_tags,

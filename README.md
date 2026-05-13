@@ -168,7 +168,9 @@ kubectl get pods -n kube-system
 
 # Clone the expense app on Bastion server and run it.
 git clone https://github.com/Lingaiahthammisetti/9.19.expense-terraform-aws-eks-TargetGroupBinding.git
+
 cd 9.19.expense-terraform-aws-eks-TargetGroupBinding
+
 cd 70-expense-k8s-TGB
 
 # Note: We will not create MySQL pod because it is already created on 20-db repository with password ExpenseApp1
