@@ -167,7 +167,7 @@ kubectl get pods -n kube-system
 ```
 
 # Clone the expense app on Bastion server and run it.
-git clone https://github.com/Lingaiahthammisetti/9.19.expense-terraform-aws-eks-TargetGroupBinding.git
+git clone https://github.com/rajalingarao/9.19.expense-terraform-aws-eks-TargetGroupBinding.git
 
 cd 9.19.expense-terraform-aws-eks-TargetGroupBinding
 
