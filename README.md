@@ -1,3 +1,16 @@
+# How to delete unnecessary files: 
+
+```
+for d in 00-vpc/ 10-sg/ 20-db/ 30-bastion/ 40-eks/ 50-acm/ 60-ingress-alb/ 70-ecr/ ; do
+  echo "Removing from $d:"
+  echo "  $d/.terraform"
+  echo "  $d/.terraform.lock.hcl"
+  rm -rf "$d/.terraform" "$d/.terraform.lock.hcl"
+  echo "deleted files from $d"
+done
+```
+
+
 # Infrastructure creation and deletion
 
 ```
