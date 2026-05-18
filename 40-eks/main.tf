@@ -15,7 +15,7 @@ module "eks" {
     #it should be false in PROD environment
     cluster_endpoint_public_access = false
 
-    vpc_id = local.vpc_id
+    vpc_id                   = local.vpc_id
     subnet_ids               = split(",",local.private_subnet_ids)
     control_plane_subnet_ids = split(",",local.private_subnet_ids)
 
